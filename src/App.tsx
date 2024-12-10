@@ -7,6 +7,7 @@ import { UncOnOff } from './components/OnOffs/UncOnOff';
 import { CtrlOnOff } from './components/OnOffs/CtrlOnOff';
 import './App.css';
 import { UncInput } from './Inputs/UncInput';
+import { UncInputRef } from './Inputs/UncInputRef';
 
 export type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5;
 
@@ -39,6 +40,7 @@ function App() {
       <PageTitle title='Inputs' />
       <h4>Uncontrolled input</h4>
       <UncInput />
+      <UncInputRef />
     </div>
   );
 }
