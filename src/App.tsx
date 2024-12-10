@@ -1,35 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { FC, useState } from 'react';
+import { CtrlAccordion } from './components/Accordions/CtrlAccordion';
+import { UncAccordion } from './components/Accordions/UncAccordion';
+import { CtrlRating } from './components/Ratings/CtrlRating';
+import { UncRating } from './components/Ratings/UncRating';
+import { UncOnOff } from './components/OnOffs/UncOnOff';
+import { CtrlOnOff } from './components/OnOffs/CtrlOnOff';
+import './App.css';
+
+export type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5;
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [ratingValue, setRatingValue] = useState<RatingValueType>(0);
+  const [accCollapsed, setAccCollapsed] = useState<boolean>(false);
+  const [isOnOffVal, setIsOnOffVal] = useState<boolean>(false);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className='App'>
+      <PageTitle title='Accordions' />
+      <CtrlAccordion
+        titleValue='Controlled accordion'
+        collapsed={accCollapsed}
+        setAccCollapsed={setAccCollapsed}
+      />
+      <UncAccordion titleValue='Uncontrolled accordion' />
+      <hr />
+      <PageTitle title='Ratings' />
+      <h4>Controlled rating</h4>
+      <CtrlRating value={ratingValue} setRatingValue={setRatingValue} />
+      <h4>Uncontrolled rating</h4>
+      <UncRating />
+      <hr />
+      <PageTitle title='OnOffs' />
+      <h4>Uncontrolled onOff</h4>
+      <UncOnOff onChange={setIsOnOffVal} /> {/* a little bullshit */}
+      <h4>Controlled onOff</h4>
+      <CtrlOnOff isOn={isOnOffVal} setIsOnOffVal={setIsOnOffVal} />
+    </div>
+  );
 }
 
-export default App
+type PageTitlePropsType = {
+  title: string;
+};
+
+const PageTitle: FC<PageTitlePropsType> = ({ title }) => {
+  return <h3>{title}</h3>;
+};
+
+export default App;
