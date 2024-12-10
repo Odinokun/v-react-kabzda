@@ -6,6 +6,8 @@ import { UncRating } from './components/Ratings/UncRating';
 import { UncOnOff } from './components/OnOffs/UncOnOff';
 import { CtrlOnOff } from './components/OnOffs/CtrlOnOff';
 import './App.css';
+import { UncInput } from './Inputs/UncInput';
+import { UncInputRef } from './Inputs/UncInputRef';
 
 export type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5;
 
@@ -35,6 +37,10 @@ function App() {
       <UncOnOff onChange={setIsOnOffVal} /> {/* a little bullshit */}
       <h4>Controlled onOff</h4>
       <CtrlOnOff isOn={isOnOffVal} setIsOnOffVal={setIsOnOffVal} />
+      <PageTitle title='Inputs' />
+      <h4>Uncontrolled input</h4>
+      <UncInput />
+      <UncInputRef />
     </div>
   );
 }
