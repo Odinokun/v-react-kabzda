@@ -1,22 +1,8 @@
 import { FC, useReducer } from 'react';
+import { reducer, TOGGLE_CONSTANT } from './reducer';
 
 type UncAccordionPropsType = {
   title: string;
-};
-
-type ActionType = {
-  type: string;
-};
-
-const TOGGLE_CONSTANT = 'TOGGLE-COLLAPSED';
-
-const reducer = (state: boolean, action: ActionType) => {
-  switch (action.type) {
-    case TOGGLE_CONSTANT:
-      return !state;
-    default:
-      throw new Error('Wrong action type');
-  }
 };
 
 export const UncAccordion: FC<UncAccordionPropsType> = ({ title }) => {
