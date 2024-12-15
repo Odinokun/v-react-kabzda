@@ -1,54 +1,40 @@
-import { FC, useState } from 'react';
+import { FC, useReducer } from 'react';
 
 type UncAccordionPropsType = {
-  titleValue: string;
+  title: string;
 };
 
-export const UncAccordion: FC<UncAccordionPropsType> = ({
-  titleValue,
-  ...restProps
-}) => {
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+type ActionType = {
+  type: string;
+};
+
+const TOGGLE_CONSTANT = 'TOGGLE-COLLAPSED';
+
+const reducer = (state: boolean, action: ActionType) => {
+  switch (action.type) {
+    case TOGGLE_CONSTANT:
+      return !state;
+    default:
+      return state;
+  }
+};
+
+export const UncAccordion: FC<UncAccordionPropsType> = ({ title }) => {
+  const [collapsed, dispatch] = useReducer(reducer, false);
+
+  const dispatchHandler = () => dispatch({ type: TOGGLE_CONSTANT });
 
   return (
     <div>
-      <UncAccordionTitle
-        title={titleValue}
-        collapsed={collapsed}
-        setCollapsed={setCollapsed}
-      />
+      <h4 style={{ cursor: 'pointer' }} onClick={dispatchHandler}>
+        {title}
+      </h4>
       {!collapsed ? <UncAccordionBody /> : null}
     </div>
   );
 };
 
-type UncAccordionTitlePropsType = {
-  title: string;
-  collapsed: boolean;
-  setCollapsed: (value: boolean) => void;
-};
-
-const UncAccordionTitle: FC<UncAccordionTitlePropsType> = ({
-  title,
-  collapsed,
-  setCollapsed,
-  ...restProps
-}) => {
-  const onToggleHandler = () => setCollapsed(!collapsed);
-
-  return (
-    <h4
-      style={{ cursor: 'pointer', userSelect: 'none' }}
-      onClick={onToggleHandler}
-    >
-      {title}
-    </h4>
-  );
-};
-
-type UncAccordionBodyPropsType = {};
-
-export const UncAccordionBody: FC<UncAccordionBodyPropsType> = () => {
+export const UncAccordionBody: FC = () => {
   return (
     <ul>
       <li>First item</li>

@@ -20,11 +20,11 @@ function App() {
     <div className='App'>
       <PageTitle title='Accordions' />
       <CtrlAccordion
-        titleValue='Controlled accordion'
+        title='Controlled accordion'
         collapsed={accCollapsed}
         setAccCollapsed={setAccCollapsed}
       />
-      <UncAccordion titleValue='Uncontrolled accordion' />
+      <UncAccordion title='Uncontrolled accordion' />
       <hr />
       <PageTitle title='Ratings' />
       <h4>Controlled rating</h4>

@@ -1,24 +1,15 @@
 import { FC } from 'react';
 
 type CtrlAccordionPropsType = {
-  titleValue: string;
+  title: string;
   collapsed: boolean;
   setAccCollapsed: (val: boolean) => void;
 };
 
-export const CtrlAccordion: FC<CtrlAccordionPropsType> = ({
-  titleValue,
-  collapsed,
-  setAccCollapsed,
-  ...restProps
-}) => {
+export const CtrlAccordion: FC<CtrlAccordionPropsType> = ({ title, collapsed, setAccCollapsed }) => {
   return (
     <div>
-      <CtrlAccordionTitle
-        title={titleValue}
-        collapsed={collapsed}
-        setAccCollapsed={setAccCollapsed}
-      />
+      <CtrlAccordionTitle title={title} collapsed={collapsed} setAccCollapsed={setAccCollapsed} />
       {!collapsed ? <CtrlAccordionBody /> : null}
     </div>
   );
@@ -30,28 +21,18 @@ type CtrlAccordionTitlePropsType = {
   setAccCollapsed: (val: boolean) => void;
 };
 
-const CtrlAccordionTitle: FC<CtrlAccordionTitlePropsType> = ({
-  title,
-  collapsed,
-  setAccCollapsed,
-  ...restProps
-}) => {
+const CtrlAccordionTitle: FC<CtrlAccordionTitlePropsType> = ({ title, collapsed, setAccCollapsed }) => {
   const onClickHandler = () => {
     setAccCollapsed(!collapsed);
   };
   return (
-    <h4
-      style={{ cursor: 'pointer', userSelect: 'none' }}
-      onClick={onClickHandler}
-    >
+    <h4 style={{ cursor: 'pointer', userSelect: 'none' }} onClick={onClickHandler}>
       {title}
     </h4>
   );
 };
 
-type CtrlAccordionBodyPropsType = {};
-
-export const CtrlAccordionBody: FC<CtrlAccordionBodyPropsType> = () => {
+export const CtrlAccordionBody: FC = () => {
   return (
     <ul>
       <li>First item</li>
