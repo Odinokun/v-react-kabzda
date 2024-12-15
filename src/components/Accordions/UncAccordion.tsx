@@ -1,5 +1,5 @@
 import { FC, useReducer } from 'react';
-import { reducer, TOGGLE_CONSTANT } from './reducer';
+import { reducer, TOGGLE_COLLAPSED } from './reducer';
 
 type UncAccordionPropsType = {
   title: string;
@@ -8,7 +8,7 @@ type UncAccordionPropsType = {
 export const UncAccordion: FC<UncAccordionPropsType> = ({ title }) => {
   const [state, dispatch] = useReducer(reducer, { collapsed: false });
 
-  const dispatchHandler = () => dispatch({ type: TOGGLE_CONSTANT });
+  const dispatchHandler = () => dispatch({ type: TOGGLE_COLLAPSED });
 
   return (
     <div>
