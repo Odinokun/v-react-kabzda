@@ -6,7 +6,7 @@ type UncAccordionPropsType = {
 };
 
 export const UncAccordion: FC<UncAccordionPropsType> = ({ title }) => {
-  const [collapsed, dispatch] = useReducer(reducer, false);
+  const [state, dispatch] = useReducer(reducer, { collapsed: false });
 
   const dispatchHandler = () => dispatch({ type: TOGGLE_CONSTANT });
 
@@ -15,7 +15,7 @@ export const UncAccordion: FC<UncAccordionPropsType> = ({ title }) => {
       <h4 style={{ cursor: 'pointer' }} onClick={dispatchHandler}>
         {title}
       </h4>
-      {!collapsed ? <UncAccordionBody /> : null}
+      {!state.collapsed ? <UncAccordionBody /> : null}
     </div>
   );
 };
